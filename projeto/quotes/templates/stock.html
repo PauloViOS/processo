@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+{% if stock %}
+	{% if stock == "Erro..." %}
+		Houve um problema com a busca
+	{% else %}
+		<h1>{{ stock.longName }}</h1>
+		Preço atual: R$ {{ stock.regularMarketPrice }}<br/>
+		Preço anterior: {{ stock.regularMarketPreviousClose}}<br/>
+		Market Cap: {{ stock.marketCap }}<br/>
+		Alta em 52 semanas: R$ {{ stock.fiftyTwoWeekHigh }}<br/>
+		Baixa em 52 semanas: R$ {{ stock.fiftyTwoWeekLow }}<br/>
+
+	{% endif %}
+{% endif %}
+
+{% endblock %}

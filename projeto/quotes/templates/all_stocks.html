@@ -4,11 +4,11 @@
 
 <h1>Todas as ações</h1>
 
-{% if api %}
-	{% if api == "Erro..." %}
+{% if all_stocks %}
+	{% if all_stocks == "Erro..." %}
 		Houve um problema com a busca
 	{% else %}
-		{% for stock in api %}
+		{% for stock in all_stocks %}
 			{% for key, value in stock.items %}
 				{{ key }}: {{ value }}<br/>
 			{% endfor %}
