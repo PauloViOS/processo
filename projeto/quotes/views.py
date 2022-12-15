@@ -1,4 +1,6 @@
 from django.shortcuts import render
+import requests
+import json
 
 
 def home(request):
@@ -6,4 +8,11 @@ def home(request):
 
 
 def all_stocks(request):
-	return render(request, 'all_stocks.html', {})
+	api_request = requests.get("https://brapi.dev/api/quote/list")
+
+	try:
+		api = json.loads(api_request.content)["stocks"]
+	except Exception as e:
+		api = "Erro..."
+
+	return render(request, 'all_stocks.html', {'api':api})

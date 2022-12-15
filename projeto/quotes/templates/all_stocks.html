@@ -4,6 +4,18 @@
 
 <h1>Todas as ações</h1>
 
+{% if api %}
+	{% if api == "Erro..." %}
+		Houve um problema com a busca
+	{% else %}
+		{% for stock in api %}
+			{% for key, value in stock.items %}
+				{{ key }}: {{ value }}<br/>
+			{% endfor %}
+			<br/>
+		{% endfor %}
+	{% endif %}
+{% endif %}
 
 {% endblock %}
 
