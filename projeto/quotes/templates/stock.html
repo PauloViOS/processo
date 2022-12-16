@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
+{% if stock_symbol %}
+	{{ stock_symbol }}
+{% endif %}
 
 {% if stock %}
 	{% if stock == "Erro..." %}
