@@ -13,7 +13,7 @@
 	</form>
 
 	{% for item in available_stocks %}
-		{{ item }}<br/>
+		{{ item }} - <a href="{% url 'remove_stock' item.id %}">Remover ação</a><br>
 	{% endfor %}
 
 

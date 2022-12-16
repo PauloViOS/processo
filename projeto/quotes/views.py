@@ -46,3 +46,10 @@ def add_stock(request):
 	else:
 		available_stocks = Stock.objects.all()
 		return render(request, "add_stock.html", {'available_stocks':available_stocks})
+
+
+def remove_stock(request, stock_id):
+	item = Stock.objects.get(pk=stock_id)
+	item.delete()
+	messages.success(request, "Ação foi removida do portfólio")
+	return redirect('add_stock')
