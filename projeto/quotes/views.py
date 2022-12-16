@@ -29,3 +29,7 @@ def stock(request):
 		return render(request, 'stock.html', {'stock':stock_info})
 	else:
 		return render(request, 'stock.html', {'stock_symbol': "coloca uma ação ai"})
+
+
+def add_stock(request):
+	return render(request, "add_stock.html", {})
