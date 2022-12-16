@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 import requests
 import json
 
+from .models import Stock
+from .forms import StockForm
 
 def home(request):
 	return render(request, 'home.html', {})
@@ -32,4 +35,14 @@ def stock(request):
 
 
 def add_stock(request):
-	return render(request, "add_stock.html", {})
+	if request.method == "POST":
+		form = StockForm(request.POST or None)
+
+		if form.is_valid():
+			form.save()
+			messages.success(request, "Ação foi adicionada ao portfólio")
+			return redirect('add_stock')
+
+	else:
+		available_stocks = Stock.objects.all()
+		return render(request, "add_stock.html", {'available_stocks':available_stocks})
