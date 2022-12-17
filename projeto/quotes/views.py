@@ -5,6 +5,7 @@ import json
 
 from .models import Stock
 from .forms import StockForm
+from .stocks_svc import populate_db_with_stock_names
 
 def home(request):
 	return render(request, 'home.html', {})
@@ -15,6 +16,7 @@ def all_stocks(request):
 
 	try:
 		all_stocks = json.loads(api_request.content)["stocks"]
+		populate_db_with_stock_names(all_stocks)
 	except Exception as e:
 		api = "Erro..."
 
