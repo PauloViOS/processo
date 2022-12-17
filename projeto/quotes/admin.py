@@ -6,7 +6,7 @@ class StockAdmin(admin.ModelAdmin):
 	list_display = ('ticker', 'company_name')
 
 class HistoricalPriceAdmin(admin.ModelAdmin):
-	list_display = ('stock', 'timestamp', 'price')
+	list_display = ('stock', 'datetime', 'price')
 
 admin.site.register(Stock, StockAdmin),
 admin.site.register(HistoricalPrice, HistoricalPriceAdmin)
