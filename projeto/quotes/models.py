@@ -4,8 +4,8 @@ from django.db import models
 class Stock(models.Model):
 	ticker = models.CharField(max_length=10, primary_key=True)
 	company_name = models.CharField(max_length=40, null=True)
-	# upper_limit =
-	# lower_limit =
+	upper_limit = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+	lower_limit = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
 	def __str__(self):
 		return self.ticker
