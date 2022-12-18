@@ -56,11 +56,3 @@ def get_1mo_historical_prices():
 			instance = HistoricalPrice(stock=stock_instance, datetime=dt_timestamp, price=price)
 			instance.save()
 
-
-def test_email():
-	subject = "Chupa"
-	message = "Mandei usando django. Facinho po"
-	email_from = settings.EMAIL_HOST_USER
-	recipient_list = ['arthurpdesimone@gmail.com', 'pv8592@gmail.com']
-	send_mail(subject, message, email_from, recipient_list)
-	return "foi hein"

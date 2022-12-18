@@ -1,15 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 import requests
 import json
-from .stocks_svc import test_email
 
-from .models import Stock
+from .models import Stock, HistoricalPrice
 from .forms import StockForm
 from .stocks_svc import populate_db_with_stock_names
 
 def home(request):
-	test_email()
 	return render(request, 'home.html', {})
 
 
@@ -18,7 +16,6 @@ def all_stocks(request):
 
 	try:
 		all_stocks = json.loads(api_request.content)["stocks"]
-		populate_db_with_stock_names(all_stocks)
 	except Exception as e:
 		api = "Erro..."
 
@@ -28,12 +25,11 @@ def all_stocks(request):
 def stock(request):
 	if request.method == "POST":
 		stock_symbol = request.POST["stock_symbol"]
-		api_request = requests.get(f"https://brapi.dev/api/quote/{stock_symbol}")
-		try:
-			stock_info = json.loads(api_request.content)["results"][0]
-		except Exception as e:
-			stock_info = "Erro..."
-		return render(request, 'stock.html', {'stock':stock_info})
+		stock_instance = get_object_or_404(Stock, ticker=stock_symbol)
+		historical_price = HistoricalPrice.objects.filter(stock=stock_instance).last()
+		price = historical_price.price
+
+		return render(request, 'stock.html', {'stock':stock_instance, 'price':price})
 	else:
 		return render(request, 'stock.html', {'stock_symbol': "coloca uma ação ai"})
 
