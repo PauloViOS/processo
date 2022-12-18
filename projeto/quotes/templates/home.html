@@ -12,7 +12,7 @@
 	  <tbody>
 		{% for stock in all_stocks %}
 			<tr>
-				<td><a href="{% url f'stock/{stock}' %}>{{ stock }}</td>
+				<td><button><a href={% url "add_stock" stock %}>+</a></button> {{ stock }}</td>
 				<td>{{ stock.hist.0.date }}</td>
 				<td>{{ stock.hist.0.price }}</td>
 			</tr>
