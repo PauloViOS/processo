@@ -1,6 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 
+	<table class="table">
+	  <thead>
+		<tr>
+		  <th scope="col">Ticker</th>
+		  <th scope="col">Hora da última atualização</th>
+		  <th scope="col">Preço</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		{% for stock in all_stocks %}
+			<tr>
+				<td><a href="{% url f'stock/{stock}' %}>{{ stock }}</td>
+				<td>{{ stock.hist.0.date }}</td>
+				<td>{{ stock.hist.0.price }}</td>
+			</tr>
+		{% endfor %}
+	  </tbody>
+	</table>
+
 
 {% endblock %}
 

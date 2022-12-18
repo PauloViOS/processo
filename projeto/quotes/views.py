@@ -5,10 +5,22 @@ import json
 
 from .models import Stock, HistoricalPrice
 from .forms import StockForm
-from .stocks_svc import populate_db_with_stock_names
+
 
 def home(request):
-	return render(request, 'home.html', {})
+	all_stocks = Stock.objects.all()
+	for stock in all_stocks:
+		historical_prices = HistoricalPrice.objects.filter(stock=stock)
+		prices = []
+		for historical_price in historical_prices:
+			dateprice = {
+				'date': historical_price.datetime,
+				'price': historical_price.price
+			}
+			prices.append(dateprice)
+		stock.hist = prices
+
+	return render(request, 'home.html', {'all_stocks':all_stocks})
 
 
 def all_stocks(request):
