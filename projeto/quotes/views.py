@@ -2,12 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 import requests
 import json
+from .stocks_svc import test_email
 
 from .models import Stock
 from .forms import StockForm
 from .stocks_svc import populate_db_with_stock_names
 
 def home(request):
+	test_email()
 	return render(request, 'home.html', {})
 
 
