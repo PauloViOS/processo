@@ -2,9 +2,26 @@
 {% block content %}
 
 {% if stock %}
-	<h1>{{ stock.longName }}</h1>
-	Preço atual: R$ {{ price }}<br/>
-	Empresa: {{ stock.company_name}}<br/>
+	<h3>{{ stock }} - {{ stock.company_name}}</h3>
+	<br/>
+	<table class="table">
+	  <thead>
+		<tr>
+		  <th scope="col">Dia</th>
+		  <th scope="col">Hora</th>
+		  <th scope="col">Preço</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		{% for historical_price in historical_prices %}
+			<tr>
+				<td>{{ historical_price.datetime|date:'d/m/Y' }}</td>
+				<td>{{ historical_price.datetime|date:'H:i' }}</td>
+				<td>R$ {{ historical_price.price }}</td>
+			</tr>
+		{% endfor %}
+	  </tbody>
+	</table>
 {% else %}
 	Por favor, insira uma ação para realizar a busca
 {% endif %}

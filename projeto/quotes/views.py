@@ -41,13 +41,12 @@ def stock(request, ticker=None):
         ticker = request.POST["ticker"]
         if ticker:
             stock_instance = get_object_or_404(Stock, ticker=ticker)
-            historical_price = HistoricalPrice.objects.filter(
+            historical_prices = HistoricalPrice.objects.filter(
                 stock=stock_instance
-            ).last()
-            price = historical_price.price
+            )
 
             return render(
-                request, "stock.html", {"stock": stock_instance, "price": price}
+                request, "stock.html", {"stock": stock_instance, "historical_prices": historical_prices}
             )
         else:
             return render(request, "stock.html", {})

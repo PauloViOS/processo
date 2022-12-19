@@ -6,6 +6,7 @@
 	  <thead>
 		<tr>
 		  <th scope="col">Ticker</th>
+		  <th scope="col">Dia da última atualização</th>
 		  <th scope="col">Hora da última atualização</th>
 		  <th scope="col">Preço</th>
 		  <th scope="col"></th>
@@ -15,8 +16,9 @@
 		{% for stock in all_stocks %}
 			<tr>
 				<td>{{ stock }}</td>
-				<td>{{ stock.hist.0.date }}</td>
-				<td>{{ stock.hist.0.price }}</td>
+				<td>{{ stock.hist.0.date|date:'d/m/Y' }}</td>
+				<td>{{ stock.hist.0.date|date:'H:i' }}</td>
+				<td>R$ {{ stock.hist.0.price }}</td>
 				<td><button><a href={% url "add_stock" stock %}>Adicionar ao portfólio</a></button></td>
 			</tr>
 		{% endfor %}
