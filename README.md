@@ -15,3 +15,12 @@ Há menos ações no meu banco do que são retornadas pela api, mas porque resol
 ### 📋 Pré-requisitos
 
 - Python 3
+
+
+
+
+ :unamused:	Peço desculpas pela falta de testes e por não ter todas as funcionalidades pedidas
+ 
+ ### Requisitos funcionais não atendidos
+ - Usuário conseguir configurar limites para o túnel
+ - Ser enviado para o usuário um email caso a ação ultrapasse os limites do túnel
