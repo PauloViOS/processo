@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('quotes', '0005_remove_historicalprice_dated_price_and_more'),
+        ("quotes", "0005_remove_historicalprice_dated_price_and_more"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='historicalprice',
-            options={'ordering': ['stock', '-datetime']},
+            name="historicalprice",
+            options={"ordering": ["stock", "-datetime"]},
         ),
     ]

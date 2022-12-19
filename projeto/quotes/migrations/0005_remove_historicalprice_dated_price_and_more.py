@@ -6,25 +6,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('quotes', '0004_historicalprice_dated_price'),
+        ("quotes", "0004_historicalprice_dated_price"),
     ]
 
     operations = [
         migrations.RemoveConstraint(
-            model_name='historicalprice',
-            name='dated_price',
+            model_name="historicalprice",
+            name="dated_price",
         ),
         migrations.RemoveField(
-            model_name='historicalprice',
-            name='timestamp',
+            model_name="historicalprice",
+            name="timestamp",
         ),
         migrations.AddField(
-            model_name='historicalprice',
-            name='datetime',
+            model_name="historicalprice",
+            name="datetime",
             field=models.DateTimeField(null=True),
         ),
         migrations.AddConstraint(
-            model_name='historicalprice',
-            constraint=models.UniqueConstraint(fields=('stock', 'datetime'), name='dated_price'),
+            model_name="historicalprice",
+            constraint=models.UniqueConstraint(
+                fields=("stock", "datetime"), name="dated_price"
+            ),
         ),
     ]

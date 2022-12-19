@@ -6,15 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('quotes', '0009_remove_stock_portfolio_delete_portfolio'),
+        ("quotes", "0009_remove_stock_portfolio_delete_portfolio"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Portfolio',
+            name="Portfolio",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=10)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=10)),
             ],
         ),
     ]

@@ -6,12 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('quotes', '0003_rename_historicalprices_historicalprice_and_more'),
+        ("quotes", "0003_rename_historicalprices_historicalprice_and_more"),
     ]
 
     operations = [
         migrations.AddConstraint(
-            model_name='historicalprice',
-            constraint=models.UniqueConstraint(fields=('stock', 'timestamp'), name='dated_price'),
+            model_name="historicalprice",
+            constraint=models.UniqueConstraint(
+                fields=("stock", "timestamp"), name="dated_price"
+            ),
         ),
     ]

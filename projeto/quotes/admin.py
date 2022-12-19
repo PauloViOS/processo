@@ -1,17 +1,18 @@
 from django.contrib import admin
-from .models import Stock, HistoricalPrice, Portfolio
+
+from .models import HistoricalPrice, Portfolio, Stock
 
 
 class StockAdmin(admin.ModelAdmin):
-	list_display = ('ticker', 'company_name', 'portfolio')
+    list_display = ("ticker", "company_name", "portfolio")
 
 
 class HistoricalPriceAdmin(admin.ModelAdmin):
-	list_display = ('stock', 'datetime', 'price')
+    list_display = ("stock", "datetime", "price")
 
 
 class PortfolioAdmin(admin.ModelAdmin):
-	list_display = ('name',)
+    list_display = ("name",)
 
 
 admin.site.register(Stock, StockAdmin),
