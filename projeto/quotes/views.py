@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth import login
 import requests
 import json
-from django.http import HttpResponse
 
 from .models import Stock, HistoricalPrice, Portfolio
-from .forms import StockForm
+from .forms import NewUserForm
 
 
 def home(request):
@@ -68,5 +68,14 @@ def remove_stock(request, ticker):
 	return redirect('/portfolio')
 
 
-def sign_up(request):
-	return render(request, 'sign_up.html', {})
+def register_request(request):
+	if request.method == "POST":
+		form = NewUserForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			login(request, user)
+			messages.success(request, "Usuário criado com sucesso." )
+			return redirect("/")
+		messages.error(request, "Informações inválidas")
+	form = NewUserForm()
+	return render(request=request, template_name="registration/register.html", context={"register_form":form})

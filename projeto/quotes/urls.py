@@ -10,5 +10,5 @@ urlpatterns = [
 	path('remove_stock/<str:ticker>', views.remove_stock, name="remove_stock"),
 	path('remove_stock/<stock_id>', views.remove_stock, name="remove_stock"),
 	path('portfolio/', views.portfolio, name="portfolio"),
-	path('cadastro/', views.sign_up, name="cadastro"),
+	path('register/', views.register_request, name="register"),
 ]

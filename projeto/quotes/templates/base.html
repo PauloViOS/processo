@@ -14,23 +14,22 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<a class="navbar-brand" href="{% url 'home' %}">PSI Stock Prices</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
+	<ul class="navbar-nav mr-auto">
+		{% if user.is_authenticated %}
 			<li class="nav-item">
-				<a class="nav-link" href="{% url 'stock' %}">Ações individuais</a>
+				<a class="nav-item" href="{% url 'portfolio' %}">Portfolio</a>
+				<a class="nav-item" href="">Buscar ação</a>
+				<a href="{% url 'logout' %}">Sair</a>
 			</li>
-		</ul>
-		<form action={% url 'stock' %} class="form-inline my-2 my-lg-0" method="POST">
-			{% csrf_token %}
-			<input class="form-control mr-sm-2" type="search" placeholder="Insira o código da ação" aria-label="Search" name="stock_symbol">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar ação</button>
-		</form>
-	</div>
+		{% else %}
+			<li class="nav-item">
+				<a class="nav-item" href="{% url 'portfolio' %}">Portfolio</a>
+				<a class="nav-item" href="">Buscar ação</a>
+				<a class="nav-item" href="{% url 'login' %}">Login</a>
+				<a class="nav-item" href="{% url 'register' %}">Cadastro</a>
+			</li>
+		{% endif %}
+	</ul>
 </nav>
 <div class="container">
 	{% block content %}
