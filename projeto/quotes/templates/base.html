@@ -12,24 +12,31 @@
 	<title>Portfólio de ações</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<a class="navbar-brand" href="{% url 'home' %}">PSI Stock Prices</a>
 	<ul class="navbar-nav mr-auto">
 		{% if user.is_authenticated %}
 			<li class="nav-item">
+				<a class="nav-item" href="{% url 'home' %}">Home</a>
 				<a class="nav-item" href="{% url 'portfolio' %}">Portfolio</a>
-				<a class="nav-item" href="">Buscar ação</a>
 				<a href="{% url 'logout' %}">Sair</a>
 			</li>
 		{% else %}
 			<li class="nav-item">
-				<a class="nav-item" href="{% url 'portfolio' %}">Portfolio</a>
-				<a class="nav-item" href="">Buscar ação</a>
+				<a class="nav-item" href="{% url 'home' %}">Home</a>
 				<a class="nav-item" href="{% url 'login' %}">Login</a>
 				<a class="nav-item" href="{% url 'register' %}">Cadastro</a>
 			</li>
 		{% endif %}
 	</ul>
+	{% if user.is_authenticated %}
+	<p class="h5 text-right mr-5 align-middle">Olá, {{ user }}</p>
+	{% endif %}
+	<form action="{% url 'stock' %}" class="form-inline my-2 my-lg-0" method="POST">
+		{% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" placeholder="Ticker" name="ticker" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar ação</button>
+    </form>
 </nav>
 <div class="container">
 	{% block content %}

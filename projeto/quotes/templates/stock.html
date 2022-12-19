@@ -1,19 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if stock_symbol %}
-	{{ stock_symbol }}
-{% endif %}
-
 {% if stock %}
-	{% if stock == "Erro..." %}
-		Houve um problema com a busca
-	{% else %}
-		<h1>{{ stock.longName }}</h1>
-		Preço atual: R$ {{ price }}<br/>
-		Empresa: {{ stock.company_name}}<br/>
-
-	{% endif %}
+	<h1>{{ stock.longName }}</h1>
+	Preço atual: R$ {{ price }}<br/>
+	Empresa: {{ stock.company_name}}<br/>
+{% else %}
+	Por favor, insira uma ação para realizar a busca
 {% endif %}
 
 {% endblock %}

@@ -133,7 +133,7 @@ EMAIL_HOST_USER = 'psistockprices@gmail.com'
 EMAIL_HOST_PASSWORD = 'zoxjmxyiwbpspxfu'
 
 CRONJOBS = [
-    ('* * * * *', 'quotes.cron.get_stock_prices_every_minute')
+    ('* 9-18 * * 1-5', 'quotes.cron.get_stock_prices_every_minute')
 ]
 
 LOGIN_REDIRECT_URL = "/"

@@ -36,14 +36,16 @@ def all_stocks(request):
 
 
 def stock(request, ticker=None):
-	if ticker:
-		stock_instance = get_object_or_404(Stock, ticker=ticker)
-		historical_price = HistoricalPrice.objects.filter(stock=stock_instance).last()
-		price = historical_price.price
+	if request.method == "POST":
+		ticker = request.POST["ticker"]
+		if ticker:
+			stock_instance = get_object_or_404(Stock, ticker=ticker)
+			historical_price = HistoricalPrice.objects.filter(stock=stock_instance).last()
+			price = historical_price.price
 
-		return render(request, 'stock.html', {'stock':stock_instance, 'price':price})
-	else:
-		return render(request, 'stock.html', {})
+			return render(request, 'stock.html', {'stock':stock_instance, 'price':price})
+		else:
+			return render(request, 'stock.html', {})
 
 
 def portfolio(request):
