@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 
 import requests
-from stocks_svc import get_all_stock_names_in_single_string
+from stocks_svc import get_all_stock_names_in_single_string, check_if_needs_to_send_mail
 
 from .models import HistoricalPrice, Stock
 
@@ -20,3 +20,4 @@ def get_stock_prices_every_minute():
         price = stock["regularMarketPrice"]
         instance = HistoricalPrice(stock=stock_instance, datetime=now, price=price)
         instance.save()
+    check_if_needs_to_send_mail()

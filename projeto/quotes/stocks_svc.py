@@ -3,7 +3,7 @@ from datetime import datetime
 
 import requests
 
-from .models import HistoricalPrice, Stock
+from .models import HistoricalPrice, Stock, Portfolio
 
 
 def populate_db_with_stock_names(all_stocks):
@@ -65,3 +65,10 @@ def get_1mo_historical_prices():
                 stock=stock_instance, datetime=dt_timestamp, price=price
             )
             instance.save()
+
+
+def check_if_needs_to_send_mail():
+    portfolio = Portfolio.objects.get()
+    portfolio_stocks = Stock.objects.filter(portfolio=portfolio)
+    for stock in portfolio_stocks:
+
